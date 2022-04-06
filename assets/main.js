@@ -25,6 +25,8 @@ setTimeout(hideNumberElements.bind(null, '#numbers_row .card'), 5000);
 
 const buttonsElement = [];
 
+let counter = 0;
+
 for (let j = 0; j < pcNumbers.length; j++) {
 
     buttonsElement[j] = document.getElementById(`btn_${j+1}`);
@@ -34,7 +36,9 @@ for (let j = 0; j < pcNumbers.length; j++) {
 
         const inputNumber = document.getElementById(`input_${j+1}`).value;
 
-        if (inputNumber == pcNumbers[j]) {
+        
+
+        if (inputNumber == pcNumbers[j] && buttonsElement[j].condition !== true) {
             //console.log(true);
 
             document.getElementById(`input_div_${j+1}`).innerHTML = '<i class="fa-solid fa-circle-check text-success mt-4"></i>';
@@ -45,9 +49,26 @@ for (let j = 0; j < pcNumbers.length; j++) {
 
             document.querySelector(`.pc_number_${j+1}`).innerHTML = pcNumbers[j];
 
-            //buttonsElement[j].condition = true;
+            buttonsElement[j].condition = true;
+            //console.log('ciao');
 
-        } else {
+            counter++;
+
+            //console.log(counter);
+
+            if (counter === 5) {
+                console.log('hai vinto');
+
+                const htmlWinnerMessage = `
+                <div class="position-absolute fw-bold lead text-success" style="top: 30%; left: 50%; transform: translate(-50%, -50%); font-size: 30vh; z-index: 100;">BRAV*</div>
+                `;
+
+                document.querySelector('body').insertAdjacentHTML('beforeend', htmlWinnerMessage);
+
+                //alert('Complimenti! Hai vinto un bel niente!')
+            }
+
+        } else if (inputNumber != pcNumbers[j] && buttonsElement[j].condition !== true) {
             
             document.getElementById(`input_div_${j+1}`).innerHTML = '<i class="fa-solid fa-circle-xmark text-danger mt-4"></i>';
 
