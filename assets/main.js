@@ -32,6 +32,7 @@ function hideNumberElements(querySelectorString) {
         console.log(`fatto ${i}`);
     }
 
+    //also display this
     inputRowElement.classList.remove('d-none');
 
 }
