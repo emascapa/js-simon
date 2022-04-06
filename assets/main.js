@@ -9,14 +9,63 @@ for (let i = 0; i < pcNumbers.length; i++) {
 
     let htmlContent = `
         <div class="col">
-        <div class="card text-center p-4 display-4">${pcNumbers[i]}</div>
+        <div class="card text-center p-4 display-4 h-100 justify-content-center pc_number_${i+1}">${pcNumbers[i]}</div>
         </div>
     `;
 
     numbersRowElement.insertAdjacentHTML('beforeend', htmlContent);
 }
 
-setTimeout(hideNumberElements('#numbers_row .card'), 5000);
+//opzione 1
+//setTimeout(function() {hideNumberElements('#numbers_row .card')}, 5000);
+
+
+//opzione 2
+setTimeout(hideNumberElements.bind(null, '#numbers_row .card'), 5000);
+
+const buttonsElement = [];
+
+for (let j = 0; j < pcNumbers.length; j++) {
+
+    buttonsElement[j] = document.getElementById(`btn_${j+1}`);
+
+
+    buttonsElement[j].addEventListener('click', function() {
+
+        const inputNumber = document.getElementById(`input_${j+1}`).value;
+
+        if (inputNumber == pcNumbers[j]) {
+            //console.log(true);
+
+            document.getElementById(`input_div_${j+1}`).innerHTML = '<i class="fa-solid fa-circle-check text-success mt-4"></i>';
+
+            //console.log(document.querySelector(`.pc_number_${j+1}`));
+            //console.log(pcNumbers[j]);
+
+
+            document.querySelector(`.pc_number_${j+1}`).innerHTML = pcNumbers[j];
+
+            //buttonsElement[j].condition = true;
+
+        } else {
+            
+            document.getElementById(`input_div_${j+1}`).innerHTML = '<i class="fa-solid fa-circle-xmark text-danger mt-4"></i>';
+
+            //console.log(false);
+            //console.log(pcNumbers[j]);
+        }
+
+        
+        //console.log(inputNumber);
+    })
+
+    //window['elementButton' + j] = document.getElementById(`btn_${j}`);
+
+    //console.log(eval(elementButton + j));
+}
+
+//console.log(buttonsElement[0]);
+//console.log(buttonsElement[4]);
 
 
 function hideNumberElements(querySelectorString) {
