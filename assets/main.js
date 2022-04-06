@@ -16,8 +16,7 @@ for (let i = 0; i < pcNumbers.length; i++) {
     numbersRowElement.insertAdjacentHTML('beforeend', htmlContent);
 }
 
-setTimeout(hideNumberElements('#numbers_row .card'), 50000);
-
+setTimeout(hideNumberElements('#numbers_row .card'), 5000);
 
 
 function hideNumberElements(querySelectorString) {
@@ -31,6 +30,8 @@ function hideNumberElements(querySelectorString) {
 
         console.log(`fatto ${i}`);
     }
+
+    
 
     //also display this
     inputRowElement.classList.remove('d-none');
